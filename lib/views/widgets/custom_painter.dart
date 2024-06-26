@@ -78,6 +78,6 @@ class MyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant MyPainter oldDelegate) {
-    return false;
+    return true;
   }
 }

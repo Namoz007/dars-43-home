@@ -10,7 +10,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   double secondX = 0;
-  double secondY = -90;
+  double secondY = -95;
+  bool isGo = true;
 
 
   @override
@@ -18,23 +19,52 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
   }
-
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    void neww() async{
-      while(true){
-        Future.delayed(Duration(seconds: 1),(){
-          print('adfhoalksdfas');
-          secondX += 2;
-          secondY += 1;
-          setState(() {
+    // secondX = 6.1;
+    // secondY = 89.6;
+    Future.delayed(Duration(seconds: 1),(){
+      setState(() {
+        if(count == 60)
+          count = 0;
+        //
+        count++;
+        if(count > 0 && count <= 7){
+          secondY += 3.2;
+          secondX += 6.5;
+        }
+        else if(count > 7 && count <= 15){
+          secondY += 6.5;
+          secondX += 6.3;
+        }
+        else if(count > 15 && count <= 22){
+          secondY += 6.3;
+          secondX -= 3.2;
+        }else if(count > 22 && count <= 30){
+          secondY += 6.3;
+          secondX -= 6.3;
+        }else if(count > 30 && count <= 37){
+          secondX -= 12;
+          secondY -= 8;
+        }else if(count > 37 && count <= 45){
+          secondY -= 1;
+          secondX -= 6.3;
+        }
 
-          });
-        });
-      }
-    }
+        if(count == 15){
+          secondY = 0;
+        }else if(count == 30){
+          secondX = 0;
+        }
 
-    neww();
+        if(count == 15)
+          print('stop');
+        print(count);
+
+
+      });
+    });
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
